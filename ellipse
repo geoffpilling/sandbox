@@ -1,0 +1,49 @@
+import createGraphVisualization from 'graph/shortcuts';
+
+// NOTE:
+// This is just an example of combining function and variable animations.
+// See graph-animated-functions and graph-animated-variables for documentation.
+
+createGraphVisualization({
+    visualization: '{{visualization}}',
+    type: 'basic',
+    width: 500,
+    functions: [{
+        template: 'a + cos(x)',
+        variables: {
+            a: {value: 0, min: -1, max: 1, step: 0.1, animated: true, animationDuration: 2},
+        },
+        displayStaticExpression: true,
+    }, {
+        template: 'sin(x * a)',
+        variables: {
+            a: {value: -1, min: -1, max: 1, step: 0.1, animated: true, animationDuration: 2},
+        },
+        displayStaticExpression: true,
+    }],
+    animations: {
+        tRange: [-8, 8],
+        duration: 8,
+        loop: false,
+        animations: [{
+            type: 'ANIMATION_TYPE_POINT',
+        }, {
+            type: 'ANIMATION_TYPE_LINE',
+        }],
+    },
+    points: [
+        {
+            x: {latex: 'p_{x}', value: 4, step: 1, animated: true, animationDuration: 5},
+            y: {latex: 'p_{y}', value: 2, step: 0.01, min: 0, max: 3, scaleStep: 1, hideSteps: true},
+            color: 'red',
+        }
+    ],
+    bounds: {
+        xLeft: -10,
+        yTop: 10,
+        xRight: 10,
+        yBottom: -10,
+    },
+    gridStep: 2,
+    axisLabels: {h: 'x', v: 'y'},
+});
